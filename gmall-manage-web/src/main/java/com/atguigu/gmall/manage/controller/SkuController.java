@@ -21,8 +21,9 @@ public class SkuController {
 
     @Reference
     private SkuService skuService;
+
     @RequestMapping("saveSkuInfo")
-    public String saveSkuInfo(@RequestBody PmsSkuInfo pmsSkuInfo){
+    public String saveSkuInfo(@RequestBody PmsSkuInfo pmsSkuInfo) {
         skuService.saveSkuInfo(pmsSkuInfo);
         return "success";
     }

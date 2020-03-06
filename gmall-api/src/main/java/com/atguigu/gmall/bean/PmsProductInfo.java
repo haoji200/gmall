@@ -26,7 +26,7 @@ public class PmsProductInfo implements Serializable {
     private String description;
 
     @Column
-    private  String catalog3Id;
+    private String catalog3Id;
 
     @Transient
     private String spuName;
@@ -37,7 +37,7 @@ public class PmsProductInfo implements Serializable {
 
     public void setSpuName(String spuName) {
         this.spuName = spuName;
-        if(productName==null||productName.equals("")){
+        if (productName == null || productName.equals("")) {
             this.productName = spuName;
         }
     }
@@ -55,8 +55,8 @@ public class PmsProductInfo implements Serializable {
 
     public void setProductName(String productName) {
         this.productName = productName;
-        if(spuName==null||spuName.equals("")){
-            this.spuName=productName;
+        if (spuName == null || spuName.equals("")) {
+            this.spuName = productName;
         }
     }
 

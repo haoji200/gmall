@@ -26,27 +26,27 @@ public class UserController {
 
     @RequestMapping("/index")
     @ResponseBody
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @RequestMapping("/All")
     @ResponseBody
-    public List<UmsMember> getAllUser(){
+    public List<UmsMember> getAllUser() {
         List<UmsMember> umsMemberList = umsMemberService.getAllUser();
         return umsMemberList;
     }
 
     @RequestMapping("/All2")
     @ResponseBody
-    public List<UmsMember> getAllUser2(){
+    public List<UmsMember> getAllUser2() {
         List<UmsMember> umsMemberList = umsMemberService.getAllUser2();
         return umsMemberList;
     }
 
     @RequestMapping("/getOne")
     @ResponseBody
-    public UmsMember getOne(){
+    public UmsMember getOne() {
         UmsMember umsMember = umsMemberService.getOne();
         return umsMember;
     }

@@ -1,17 +1,14 @@
 package com.atguigu.gmall.manage.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.atguigu.gmall.bean.PmsSkuAttrValue;
 import com.atguigu.gmall.bean.PmsSkuImage;
 import com.atguigu.gmall.bean.PmsSkuInfo;
 import com.atguigu.gmall.bean.PmsSkuSaleAttrValue;
-import com.atguigu.gmall.manage.mapper.PmsSkuAttrValueMapper;
-import com.atguigu.gmall.manage.mapper.PmsSkuImageMapper;
-import com.atguigu.gmall.manage.mapper.PmsSkuInfoMapper;
-import com.atguigu.gmall.manage.mapper.PmsSkuSaleAttrValueMapper;
 import com.atguigu.gmall.service.SkuService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.atguigu.gmall.manage.mapper.*;
 import java.util.List;
 
 /**
@@ -60,4 +57,20 @@ public class SkuServiceImpl implements SkuService {
             pmsSkuSaleAttrValueMapper.insertSelective(pmsSkuSaleAttrValue);
         }
     }
+
+    @Override
+    public PmsSkuInfo getSkuInfoById(String skuId) {
+        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+        pmsSkuInfo.setId(skuId);
+        PmsSkuInfo pmsSkuInfo1 = pmsSkuInfoMapper.selectOne(pmsSkuInfo);
+
+        PmsSkuImage pmsSkuImage = new PmsSkuImage();
+        pmsSkuImage.setSkuId(skuId);
+        List<PmsSkuImage> pmsSkuImageList = pmsSkuImageMapper.select(pmsSkuImage);
+        pmsSkuInfo1.setSkuImageList(pmsSkuImageList);
+
+        return pmsSkuInfo1;
+    }
+
+
 }

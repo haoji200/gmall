@@ -1,7 +1,6 @@
 package com.atguigu.gmall.bean;
 
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -46,8 +45,8 @@ public class PmsSkuInfo implements Serializable {
 
     public void setSpuId(String spuId) {
         this.spuId = spuId;
-        if(productId==null||productId.equals("")){
-            this.productId=spuId;
+        if (productId == null || productId.equals("")) {
+            this.productId = spuId;
         }
     }
 
@@ -113,8 +112,8 @@ public class PmsSkuInfo implements Serializable {
 
     public void setProductId(String productId) {
         this.productId = productId;
-        if(spuId==null||spuId.equals("")){
-            this.spuId=productId;
+        if (spuId == null || spuId.equals("")) {
+            this.spuId = productId;
         }
     }
 

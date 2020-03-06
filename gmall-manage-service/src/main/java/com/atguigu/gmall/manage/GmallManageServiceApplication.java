@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.atguigu.gmall.manage.mapper")
+@MapperScan(basePackages = "com.atguigu.gmall")
 public class GmallManageServiceApplication {
 
     public static void main(String[] args) {

@@ -22,13 +22,13 @@ public class AttrController {
     private AttrService attrService;
 
     @RequestMapping("/attrInfoList")
-    public List<PmsBaseAttrInfo> attrInfoList(@RequestParam String catalog3Id){
+    public List<PmsBaseAttrInfo> attrInfoList(@RequestParam String catalog3Id) {
         List<PmsBaseAttrInfo> pmsBaseAttrInfoList = attrService.attrInfoList(catalog3Id);
         return pmsBaseAttrInfoList;
     }
 
     @RequestMapping("/saveAttrInfo")
-    public String saveAttrInfo(@RequestBody PmsBaseAttrInfo pmsBaseAttrInfo){
+    public String saveAttrInfo(@RequestBody PmsBaseAttrInfo pmsBaseAttrInfo) {
         attrService.saveAttrInfo(pmsBaseAttrInfo);
         return "success";
     }

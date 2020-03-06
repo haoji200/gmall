@@ -24,7 +24,7 @@ public class GmallUploadUtil {
             // 上传文件
             String originalFilename = multipartFile.getOriginalFilename();// sfsdfsd.fefe-efefe.a.jpg
             int index = originalFilename.lastIndexOf(".");
-            String ext = originalFilename.substring(index+1);
+            String ext = originalFilename.substring(index + 1);
             String[] urls = storageClient.upload_file(multipartFile.getBytes(), ext, null);
 
             // 解析返回的图片的路径url信息
