@@ -14,5 +14,5 @@ import java.util.List;
  * @Description:
  */
 public interface PmsProductSaleAttrMapper extends Mapper<PmsProductSaleAttr> {
-    List<PmsProductSaleAttr> spuSaleAttrListBySql(@Param("productId") String productId);
+    List<PmsProductSaleAttr> spuSaleAttrListBySql(@Param("productId") String productId,@Param("skuId") String skuId);
 }

@@ -5,17 +5,16 @@
 <mapper namespace="com.atguigu.gmall.manage.mapper.PmsProductSaleAttrMapper">
     <select id="spuSaleAttrListBySql" resultMap="spuSaleAttrListBySqlMap">
         SELECT
-            psa.id AS psa_id,
-            psa.*,
-            psav.id AS psav_id,
-            psav.*
+            psa.*,psav.*,psa.id as psa_id,psav.id as psav_id,if(pssav.sku_id,1,0) as isChecked
         FROM
-            pms_product_sale_attr psa,
-            pms_product_sale_attr_value psav
-        WHERE
-            psa.product_id = psav.product_id
-            AND psa.sale_attr_id = psav.sale_attr_id
+            pms_product_sale_attr psa
+            INNER JOIN pms_product_sale_attr_value psav ON psa.sale_attr_id = psav.sale_attr_id
+            AND psa.product_id = psav.product_id
             AND psa.product_id = #{productId}
+            LEFT JOIN pms_sku_sale_attr_value pssav ON psa.sale_attr_id = pssav.sale_attr_id
+            AND pssav.sale_attr_value_id = psav.id
+            AND pssav.sku_id = #{skuId}
+            order by psav_id
     </select>
     <resultMap id="spuSaleAttrListBySqlMap" type="com.atguigu.gmall.bean.PmsProductSaleAttr" autoMapping="true">
         <result column="psa_id" property="id"/>

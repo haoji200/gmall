@@ -12,7 +12,8 @@
 <body>
 <div id="max">
     <header>
-
+        <input type="hidden" id="productId" th:value="${productId}"/>
+        <input type="text" th:value="${jsonString}" id="jsonString" />
         <div class="min">
             <ul class="header_ul_left">
                 <li class="glyphicon glyphicon-home"><a href="shouye.html" class="aa">首页</a></li>
@@ -229,7 +230,7 @@
                     <div class="box-attr-2 clear" th:each="spuSaleAttr:${spuSaleAttrListCheckBySku}">
                         <dl>
                             <dt th:text="${spuSaleAttr.saleAttrName}">选择颜色</dt>
-                            <dd th:class="redborder" th:each="saleAttrValue:${spuSaleAttr.spuSaleAttrValueList}">
+                            <dd th:class="(${saleAttrValue.isChecked=='1'})?'redborder':''" th:each="saleAttrValue:${spuSaleAttr.spuSaleAttrValueList}">
                                 <div th:value="${saleAttrValue.id}" th:text="${saleAttrValue.saleAttrValueName}">
                                     摩卡金
                                 </div>
@@ -1043,36 +1044,40 @@
     }
 
     function switchSkuId() {
-        // 被选中属性
-        var checkDivs = $(".redborder div");
-        var valueIds = "";
-        // 拼接成属性值串
-        for (var i = 0; i < checkDivs.length; i++) {
-            var saleAttrValueDiv = checkDivs.eq(i);
-            if (i > 0) {
-                valueIds = valueIds + "|";
-            }
-            valueIds = valueIds + saleAttrValueDiv.attr("value");
+        var saleValues = $(".redborder div");
+        var k = '';
+        $(saleValues).each(function(i,saleValue){
+            var saleAttrValueId = $(saleValue).attr("value");
+            k = k + "|" + saleAttrValueId;
+        })
+        var jsonString = $("#jsonString").val();
+        var jsonObject = JSON.parse(jsonString);
+        var v = jsonObject[k];
+        if(v){
+            window.location.href = v + ".html";
+        }else{
+            alert("该商品型号已售空");
         }
-        //页面上的hashjson
-        var valuesSku = $("#valuesSku").attr("value");
-        var valuesSkuJson = JSON.parse(valuesSku);
+    }
+    function switchSkuId_bar() {
+        var saleValues = $(".redborder div");
+        var k = '';
+        $(saleValues).each(function(i,saleValue){
+            var saleAttrValueId = $(saleValue).attr("value");
+            k = k + "|" + saleAttrValueId;
+        })
+        var productId = $("#productId").val();
+        $.getJSON("spu/spu_"+productId+".json",function(json){
 
-        // 看看hash有没有
-        var skuId = valuesSkuJson[valueIds];
-        // 当前sku
-        var skuIdSelf = $("#skuId").val();
-
-        // 判断是否跳转
-        if (skuId) {
-            if (skuId == skuIdSelf) {
-                $("#cartBtn").attr("class", "box-btns-two");
-            } else {
-                window.location.href = "/" + skuId + ".html";
+            // 判断当前用户点击的属性值有没有对应的skuId
+            var v = json[k];
+            if(v){
+                window.location.href = v + ".html2";
+            }else{
+                alert("该商品型号已售空");
             }
-        } else {
-            $("#cartBtn").attr("class", "box-btns-two-off");
-        }
+        });
+
     }
 </script>
 

@@ -98,8 +98,8 @@ public class SpuServiceImpl implements SpuService {
     }
 
 
-    public List<PmsProductSaleAttr> spuSaleAttrListBySql(String productId) {
-        List<PmsProductSaleAttr>  productSaleAttrs = pmsProductSaleAttrMapper.spuSaleAttrListBySql(productId);
+    public List<PmsProductSaleAttr> spuSaleAttrListBySql(String productId,String skuId) {
+        List<PmsProductSaleAttr>  productSaleAttrs = pmsProductSaleAttrMapper.spuSaleAttrListBySql(productId,skuId);
         return productSaleAttrs;
     }
 
