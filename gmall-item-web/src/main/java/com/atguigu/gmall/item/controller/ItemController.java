@@ -40,7 +40,9 @@ public class ItemController {
 
     @RequestMapping("{skuId}.html")
     public String getItem(@PathVariable String skuId, Map map){
+        System.out.println("1");
         PmsSkuInfo skuInfo = skuService.getSkuInfoById(skuId);
+        System.out.println("2");
         map.put("skuInfo",skuInfo);
         String productId = skuInfo.getProductId();
 

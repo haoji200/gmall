@@ -20,4 +20,6 @@ public interface CatalogService {
     List<PmsBaseCatalog2> getCatalog2(String catalog1Id);
 
     List<PmsBaseCatalog3> getCatalog3(String catalog2Id);
+
+    List<PmsBaseCatalog1> getCatalogJson();
 }

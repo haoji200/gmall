@@ -6,9 +6,11 @@ import com.atguigu.gmall.bean.PmsBaseAttrValue;
 import com.atguigu.gmall.manage.mapper.PmsBaseAttrInfoMapper;
 import com.atguigu.gmall.manage.mapper.PmsBaseAttrValueMapper;
 import com.atguigu.gmall.service.AttrService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * AttrServiceImpl
@@ -53,5 +55,12 @@ public class AttrServiceImpl implements AttrService {
             pmsBaseAttrValue.setAttrId(attrInfoId);
             pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
         }
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getArrtInfoListByValueIds(Set<String> valueIdSet) {
+        String join = StringUtils.join(valueIdSet, ",");
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.selectArrtInfoListByValueIds(join);
+        return pmsBaseAttrInfos;
     }
 }
